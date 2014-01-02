@@ -35,3 +35,10 @@ $ echo -n "http://centos.gravityfish.com/6/isos/x86_64/CentOS-6.5-x86_64-minimal
 (stdin)= 56ba30f9f920b6ab6082bc8520368e278eafedccccbba2af6eb8d85445ca4aa9
 $ ln -s CentOS-6.5-x86_64-minimal.iso 56ba30f9f920b6ab6082bc8520368e278eafedccccbba2af6eb8d85445ca4aa9.iso
 ```
+
+For reference:
+
+```sh
+$ echo -n "http://download.virtualbox.org/virtualbox/4.3.6/VBoxGuestAdditions_4.3.6.iso" | openssl sha256
+(stdin)= f87be3a86ef0ad0b827a59806c87425c162190cb9dab8df9ea60030a344a9016
+```
