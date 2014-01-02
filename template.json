@@ -1,0 +1,28 @@
+{
+  "builders": [{
+    "name": "centos-64-minimal",
+    "type": "virtualbox",
+    "guest_os_type": "RedHat_64",
+    "hard_drive_interface": "sata",
+    "disk_size": 65536,
+    "vboxmanage": [
+      ["modifyvm", "{{.Name}}", "--memory", "1024"],
+      ["modifyvm", "{{.Name}}", "--ioapic", "on"],
+      ["modifyvm", "{{.Name}}", "--rtcuseutc", "on"]
+    ],
+    "headless": false,
+    "boot_wait": "5s",
+    "http_directory": "./",
+    "boot_command": [
+      "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart/centos-64-minimal-ks.cfg<enter><wait>"
+    ],
+    "iso_url": "http://vault.centos.org/6.4/isos/x86_64/CentOS-6.4-x86_64-minimal.iso",
+    "iso_checksum": "4d96003d9faf5aa2097ef61469cfe1e6fb1563799fb8aef6e80631a3d8f32484",
+    "iso_checksum_type": "sha256",
+    "shutdown_command": "echo 'packer' | sudo -S shutdown -P now",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "ssh_wait_timeout": "20m",
+    "virtualbox_version_file": ".vbox_version"
+  }]
+}
