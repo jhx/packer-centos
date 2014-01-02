@@ -1,6 +1,6 @@
 {
   "builders": [{
-    "name": "centos-64-minimal",
+    "name": "centos-65-minimal",
     "type": "virtualbox",
     "guest_os_type": "RedHat_64",
     "hard_drive_interface": "sata",
@@ -8,16 +8,24 @@
     "vboxmanage": [
       ["modifyvm", "{{.Name}}", "--memory", "1024"],
       ["modifyvm", "{{.Name}}", "--ioapic", "on"],
-      ["modifyvm", "{{.Name}}", "--rtcuseutc", "on"]
+      ["modifyvm", "{{.Name}}", "--rtcuseutc", "on"],
+      ["modifyvm", "{{.Name}}", "--boot1", "dvd", "--boot2", "disk"]
     ],
     "headless": false,
     "boot_wait": "5s",
     "http_directory": "./",
     "boot_command": [
-      "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart/centos-64-minimal-ks.cfg<enter><wait>"
+      "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart/centos-65-minimal-ks.cfg<enter><wait>"
     ],
-    "iso_url": "http://vault.centos.org/6.4/isos/x86_64/CentOS-6.4-x86_64-minimal.iso",
-    "iso_checksum": "4d96003d9faf5aa2097ef61469cfe1e6fb1563799fb8aef6e80631a3d8f32484",
+    "iso_urls": [
+      "http://mirror.beyondhosting.net/CentOS/6.5/isos/x86_64/CentOS-6.5-x86_64-minimal.iso",
+      "http://centos.gravityfish.com/6/isos/x86_64/CentOS-6.5-x86_64-minimal.iso",
+      "http://lug.mtu.edu/centos/6.5/isos/x86_64/CentOS-6.5-x86_64-minimal.iso",
+      "http://mirror.rackspace.com/CentOS/6.5/isos/x86_64/CentOS-6.5-x86_64-minimal.iso",
+      "http://mirror.raystedman.net/centos/6.5/isos/x86_64/CentOS-6.5-x86_64-minimal.iso",
+      "http://mirror.teklinks.com/centos/6.5/isos/x86_64/CentOS-6.5-x86_64-minimal.iso"
+    ],
+    "iso_checksum": "f9d84907d77df62017944cb23cab66305e94ee6ae6c1126415b81cc5e999bdd0",
     "iso_checksum_type": "sha256",
     "shutdown_command": "echo 'packer' | sudo -S shutdown -P now",
     "ssh_username": "vagrant",
